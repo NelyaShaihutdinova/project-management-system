@@ -10,7 +10,7 @@ const { Content } = Layout;
 export const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Layout style={{ minHeight: '100vh', width: '100%', fontFamily: 'Montserrat-Regular' }}>
+            <Layout style={{ minHeight: '100vh', width: '100%' }}>
                 <AppHeader />
                 <Content style={{ padding: '24px', width: '100%', paddingTop: '30px' }}>
                     <Router />

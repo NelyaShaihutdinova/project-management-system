@@ -13,7 +13,7 @@ const getProjectsRequest = (): GetProjectsRequestAction => ({
     type: 'GET_PROJECTS_REQUEST',
 });
 
-const getProjectsSuccess = (projects: ProjectData): GetProjectsSuccessAction => ({
+const getProjectsSuccess = (projects: { data: ProjectData[] } | null): GetProjectsSuccessAction => ({
     type: 'GET_PROJECTS_SUCCESS',
     payload: projects,
 });

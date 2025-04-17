@@ -8,7 +8,7 @@ export interface ProjectData {
 export interface ProjectState {
     projects: {
         data: ProjectData[];
-    };
+    } | null;
     loading: boolean;
     error: string | null;
 }
@@ -23,7 +23,9 @@ export interface GetProjectsRequestAction {
 
 export interface GetProjectsSuccessAction {
     type: typeof GET_PROJECTS_SUCCESS;
-    payload: ProjectData;
+    payload: {
+        data: ProjectData[];
+    } | null;
 }
 
 export interface GetProjectsErrorAction {
