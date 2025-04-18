@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks.ts';
 import { Button, Card, Col, Input, Row, Select, Spin } from 'antd';
 import { getTasks } from '../store/tasks/actions.ts';
-import { statusLabels, TaskData, TaskState } from '../store/tasks/types.ts';
+import {statusLabels, TaskData, TasksState, TaskState} from '../store/tasks/types.ts';
 import { PlusOutlined, UpOutlined } from '@ant-design/icons';
 
 export const scrollToTop = () => {
@@ -11,7 +11,7 @@ export const scrollToTop = () => {
 
 export const Issues: React.FC = () => {
     const dispatch = useAppDispatch();
-    const tasksState: TaskState = useAppSelector((state) => state.tasks);
+    const tasksState: TaskState = useAppSelector((state) => state.tasks) as TasksState;
     const [statusFilter, setStatusFilter] = useState<string | undefined>();
     const [boardFilter, setBoardFilter] = useState<string | undefined>();
     const [titleSearch, setTitleSearch] = useState<string>('');
@@ -37,6 +37,20 @@ export const Issues: React.FC = () => {
         <div style={{ padding: 50, position: 'relative' }}>
             <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
                 <Col xs={24} sm={12} md={6}>
+                    <Input
+                        placeholder="Поиск по названию"
+                        value={titleSearch}
+                        onChange={(e) => setTitleSearch(e.target.value)}
+                    />
+                </Col>
+                <Col xs={24} sm={12} md={6}>
+                    <Input
+                        placeholder="Поиск по исполнителю"
+                        value={assigneeSearch}
+                        onChange={(e) => setAssigneeSearch(e.target.value)}
+                    />
+                </Col>
+                <Col xs={24} sm={12} md={6}>
                     <Select allowClear placeholder="Статус задачи" onChange={setStatusFilter} style={{ width: '100%' }}>
                         <Select.Option value="В процессе">В процессе</Select.Option>
                         <Select.Option value="Бэклог">Бэклог</Select.Option>
@@ -54,20 +68,6 @@ export const Issues: React.FC = () => {
                                 </Select.Option>
                             ))}
                     </Select>
-                </Col>
-                <Col xs={24} sm={12} md={6}>
-                    <Input
-                        placeholder="Поиск по названию"
-                        value={titleSearch}
-                        onChange={(e) => setTitleSearch(e.target.value)}
-                    />
-                </Col>
-                <Col xs={24} sm={12} md={6}>
-                    <Input
-                        placeholder="Поиск по исполнителю"
-                        value={assigneeSearch}
-                        onChange={(e) => setAssigneeSearch(e.target.value)}
-                    />
                 </Col>
             </Row>
             <Row gutter={[16, 16]}>

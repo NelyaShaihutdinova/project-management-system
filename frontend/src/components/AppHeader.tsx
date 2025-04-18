@@ -1,8 +1,6 @@
-import { Button, Layout } from 'antd';
-import { Link, useLocation } from 'react-router-dom';
+import {Button, Layout} from 'antd';
+import {Link, useLocation} from 'react-router-dom';
 import React from 'react';
-
-const { Header } = Layout;
 
 export const AppHeader: React.FC = () => {
     const location = useLocation();
@@ -16,7 +14,7 @@ export const AppHeader: React.FC = () => {
     });
 
     return (
-        <Header
+        <Layout.Header
             style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -29,7 +27,7 @@ export const AppHeader: React.FC = () => {
                 zIndex: '1000',
             }}
         >
-            <div style={{ display: 'flex', gap: '20px' }}>
+            <div style={{display: 'flex', gap: '20px'}}>
                 <Link to="/issues" style={linkStyle('/issues')}>
                     Все задачи
                 </Link>
@@ -38,6 +36,6 @@ export const AppHeader: React.FC = () => {
                 </Link>
             </div>
             <Button type="primary">Создать задачу</Button>
-        </Header>
+        </Layout.Header>
     );
 };

@@ -5,7 +5,7 @@ import {
     ProjectsActionTypes,
     ProjectState,
 } from './types.ts';
-import { Reducer } from 'redux';
+import {Reducer} from 'redux';
 
 const initialState: ProjectState = {
     projects: null,

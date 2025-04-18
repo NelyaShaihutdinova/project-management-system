@@ -8,7 +8,7 @@ import { ConfigProvider } from 'antd';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <ConfigProvider theme={{ token: { fontFamily: 'Montserrat-Regular' } }}>
+        <ConfigProvider theme={{token: { fontFamily: 'Montserrat-Regular' }}}>
             <Provider store={store}>
                 <App />
             </Provider>
