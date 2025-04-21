@@ -1,29 +1,42 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { getProjects } from '../store/projects/actions.ts';
 import { useAppDispatch, useAppSelector } from '../store/hooks.ts';
-import { Button, Card, Col, Row, Spin } from 'antd';
+import { Button, Card, Col, Row, Spin, Typography } from 'antd';
 import { Link } from 'react-router-dom';
-import { ProjectState } from '../store/projects/types.ts';
+import { ProjectData, ProjectState } from '../store/projects/types.ts';
 import { UpOutlined } from '@ant-design/icons';
-import { scrollToTop } from './Issues.tsx';
-
+import { scrollToTop } from '../utils/scroll.ts';
+import {getTasks} from "../store/tasks/actions.ts";
 export const Projects: React.FC = () => {
     const dispatch = useAppDispatch();
-    const projectsState: ProjectState = useAppSelector((state) => state.projects);
+    const projectsState: ProjectState = useAppSelector((state): ProjectState => state.projects);
 
     useEffect(() => {
         dispatch(getProjects());
+        dispatch(getTasks());
+    }, [dispatch]);
+
+    const handleScrollToTop = useCallback((): void => {
+        scrollToTop();
     }, []);
 
     if (projectsState.loading) {
         return <Spin size="large" style={{ display: 'block', margin: '100px auto' }} />;
     }
 
+    if (projectsState.projects && projectsState.projects.data.length === 0) {
+        return (
+            <div style={{ padding: '50px', textAlign: 'center' }}>
+                <Typography.Text type="secondary">Проекты не найдены</Typography.Text>
+            </div>
+        );
+    }
+
     return (
         <div style={{ padding: 50, position: 'relative' }}>
             <Row gutter={[16, 16]}>
                 {projectsState.projects &&
-                    projectsState.projects.data.map((project) => (
+                    projectsState.projects?.data.map((project: ProjectData) => (
                         <Col key={project.id} xs={24}>
                             <Link to={`/board/${project.id}`}>
                                 <Card title={project.name} hoverable>
@@ -45,7 +58,7 @@ export const Projects: React.FC = () => {
                     zIndex: 999,
                     boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
                 }}
-                onClick={scrollToTop}
+                onClick={handleScrollToTop}
             />
         </div>
     );

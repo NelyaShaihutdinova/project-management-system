@@ -5,9 +5,9 @@ import {
     ProjectData,
     ProjectsActionTypes,
 } from './types.ts';
-import {Dispatch} from 'redux';
+import { Dispatch } from 'redux';
 import axios from 'axios';
-import {SERVER_API_URL} from '../../App.tsx';
+import { SERVER_API_URL } from '../../App.tsx';
 
 const getProjectsRequest = (): GetProjectsRequestAction => ({
     type: 'GET_PROJECTS_REQUEST',

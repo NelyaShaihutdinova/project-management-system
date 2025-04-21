@@ -10,7 +10,7 @@ export const Router: React.FC = () => {
             <Route path="/boards" element={<Projects />} />
             <Route path="/issues" element={<Issues />} />
             <Route path="/board/:id" element={<Board />} />
-            <Route path="*" element={<Navigate to="/boards" replace />} />
+            <Route path="*" element={<Navigate to="/issues" replace />} />
         </Routes>
     );
 };

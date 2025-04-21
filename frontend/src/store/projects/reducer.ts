@@ -5,7 +5,7 @@ import {
     ProjectsActionTypes,
     ProjectState,
 } from './types.ts';
-import {Reducer} from 'redux';
+import { Reducer } from 'redux';
 
 const initialState: ProjectState = {
     projects: null,
@@ -14,7 +14,7 @@ const initialState: ProjectState = {
 };
 
 export const projectReducer: Reducer<ProjectState, ProjectsActionTypes> = (
-    state = initialState,
+    state: ProjectState | undefined = initialState,
     action: ProjectsActionTypes
 ): ProjectState => {
     switch (action.type) {
