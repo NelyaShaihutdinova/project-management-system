@@ -1,9 +1,9 @@
-import {TaskData, TaskPriority, TaskStatus} from '../store/tasks/types.ts';
+import { TaskData, TaskPriority, TaskStatus } from '../store/tasks/types.ts';
 import { Button, Card, Input, Select } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { ProjectData } from '../store/projects/types.ts';
 import { useAppDispatch } from '../store/hooks.ts';
-import {createTask, getTaskByProject, getTasks, updateTaskById} from '../store/tasks/actions.ts';
+import { createTask, getTaskByProject, getTasks, updateTaskById } from '../store/tasks/actions.ts';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,7 +30,7 @@ export const TaskWindow = ({
     isFromIssues,
     projects,
     allUsers,
-    currentBoardId
+    currentBoardId,
 }: TaskWindowType) => {
     const dispatch = useAppDispatch();
     const [title, setTitle] = useState(task?.title);

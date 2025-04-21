@@ -2,9 +2,9 @@ import { Button, Layout, Modal } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 import React, { useCallback, useMemo, useState } from 'react';
 import { TaskData, TasksState, TaskState } from '../store/tasks/types.ts';
-import {useAppDispatch, useAppSelector} from '../store/hooks.ts';
+import { useAppDispatch, useAppSelector } from '../store/hooks.ts';
 import { TaskWindow } from './TaskWindow.tsx';
-import {getTasks} from "../store/tasks/actions.ts";
+import { getTasks } from '../store/tasks/actions.ts';
 
 export const AppHeader: React.FC = () => {
     const location = useLocation();
@@ -85,7 +85,9 @@ export const AppHeader: React.FC = () => {
                     projects={projects}
                     onClose={handleCancel}
                     isFromIssues={false}
-                    currentBoardId={location.pathname.includes('/board') ? Number(location.pathname.split('/').pop()) : undefined}
+                    currentBoardId={
+                        location.pathname.includes('/board') ? Number(location.pathname.split('/').pop()) : undefined
+                    }
                 />
             </Modal>
         </Layout.Header>

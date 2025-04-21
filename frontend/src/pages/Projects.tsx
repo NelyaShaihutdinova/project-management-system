@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { ProjectData, ProjectState } from '../store/projects/types.ts';
 import { UpOutlined } from '@ant-design/icons';
 import { scrollToTop } from '../utils/scroll.ts';
-import {getTasks} from "../store/tasks/actions.ts";
+import { getTasks } from '../store/tasks/actions.ts';
 export const Projects: React.FC = () => {
     const dispatch = useAppDispatch();
     const projectsState: ProjectState = useAppSelector((state): ProjectState => state.projects);

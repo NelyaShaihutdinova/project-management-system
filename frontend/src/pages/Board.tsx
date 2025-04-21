@@ -2,7 +2,7 @@ import { Button, Card, Col, Modal, Row, Spin, Typography } from 'antd';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/hooks.ts';
-import {getTaskByProject, getTasks} from '../store/tasks/actions.ts';
+import { getTaskByProject, getTasks } from '../store/tasks/actions.ts';
 import { TaskData, TasksByProjectState, TaskState } from '../store/tasks/types.ts';
 import { ProjectData, ProjectState } from '../store/projects/types.ts';
 import { BarChartOutlined, UpOutlined } from '@ant-design/icons';
