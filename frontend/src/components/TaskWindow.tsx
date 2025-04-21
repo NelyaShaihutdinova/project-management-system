@@ -3,7 +3,7 @@ import { Button, Card, Input, Select } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { ProjectData } from '../store/projects/types.ts';
 import { useAppDispatch } from '../store/hooks.ts';
-import { createTask, updateTaskById } from '../store/tasks/actions.ts';
+import {createTask, getTaskByProject, getTasks, updateTaskById} from '../store/tasks/actions.ts';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,6 +17,7 @@ type TaskWindowType = {
     onClose: () => void;
     onUpdate?: () => void;
     isFromIssues: boolean;
+    currentBoardId?: number;
 };
 
 export const TaskWindow = ({
@@ -29,6 +30,7 @@ export const TaskWindow = ({
     isFromIssues,
     projects,
     allUsers,
+    currentBoardId
 }: TaskWindowType) => {
     const dispatch = useAppDispatch();
     const [title, setTitle] = useState(task?.title);
@@ -76,6 +78,11 @@ export const TaskWindow = ({
         if (!validate()) return;
         if (action === 'Создание') {
             dispatch(createTask(Number(assignee), currentProject, description, priority, title)).then(() => {
+                if (currentBoardId) {
+                    dispatch(getTaskByProject(String(currentBoardId)));
+                } else {
+                    dispatch(getTasks());
+                }
                 onUpdate?.();
                 onClose();
             });

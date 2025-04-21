@@ -85,6 +85,7 @@ export const AppHeader: React.FC = () => {
                     projects={projects}
                     onClose={handleCancel}
                     isFromIssues={false}
+                    currentBoardId={location.pathname.includes('/board') ? Number(location.pathname.split('/').pop()) : undefined}
                 />
             </Modal>
         </Layout.Header>
